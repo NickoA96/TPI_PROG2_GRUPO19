@@ -21,10 +21,12 @@ Juego::Juego(){
     _textTiempo.setPosition(720.f, 0.f);
     _textTiempo.setOutlineThickness(1.f);
     _textTiempo.setOutlineColor(sf::Color::Black);
-
-    _sonido_Colision_Buffer.loadFromFile("osea.wav");
-    _sonido_Colision.setBuffer(_sonido_Colision_Buffer);
-    _sonido_Colision.setVolume(20.f);
+    _sonido_Colision_Erroneo_Buffer.loadFromFile("erroneo.wav");
+    _sonido_Colision_Erroneo.setBuffer(_sonido_Colision_Erroneo_Buffer);
+    _sonido_Colision_Erroneo.setVolume(20.f);
+    _sonido_Colision_Correcto_Buffer.loadFromFile("correcto.wav");
+    _sonido_Colision_Correcto.setBuffer(_sonido_Colision_Correcto_Buffer);
+    _sonido_Colision_Correcto.setVolume(20.f);
 
     inicializarArray();
 
@@ -87,9 +89,12 @@ void Juego::aplicarEfectoProyectil(int pos){
     if(_vProyectiles[pos]->getEsBueno()){
         _jugador.cambiarColorTemporal(sf::Color::Green);
         _jugador.sumarTiempo(_vProyectiles[pos]->getSegundosEfecto());
+        _sonido_Colision_Correcto.setPitch(1.f + (rand()%3/10.f));
+        _sonido_Colision_Correcto.play();
     }else if(!_vProyectiles[pos]->getEsBueno()){
         _jugador.cambiarColorTemporal(sf::Color::Red);
-        _sonido_Colision.play();
+        _sonido_Colision_Erroneo.setPitch(0.7f + (rand()%3/10.f));
+        _sonido_Colision_Erroneo.play();
         _jugador.restarTiempo(_vProyectiles[pos]->getSegundosEfecto());
     }
 

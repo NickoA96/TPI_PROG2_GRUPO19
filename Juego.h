@@ -21,8 +21,10 @@ private:
 	float _velocidadActual = 0.f;
     sf::Text _textTiempo;
     sf::Font _font;
-	sf::Sound _sonido_Colision;
-    sf::SoundBuffer _sonido_Colision_Buffer;
+	sf::Sound _sonido_Colision_Erroneo;
+    sf::SoundBuffer _sonido_Colision_Erroneo_Buffer;
+    sf::Sound _sonido_Colision_Correcto;
+    sf::SoundBuffer _sonido_Colision_Correcto_Buffer;
 
 
 public:
