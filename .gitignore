@@ -44,7 +44,7 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 *.cmake
-
+*.depend
 # ── Lo que SÍ se sube (no ignorar) ────────────────
 # ✔  *.cpp  *.h  main.cpp
 # ✔  fonts/arial.ttf  (u otras fuentes que uses)
