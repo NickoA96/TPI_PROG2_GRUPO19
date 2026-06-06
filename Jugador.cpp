@@ -93,7 +93,7 @@ void Jugador::reiniciar(){
     setPosition(375.f, 700.f);
     setScale(0.4f, 0.4f);
 
-    _velocidad = 6.f;
+    _velocidad = 8.f;
     _tiempoCursada = 30.f;
     _conceptosBuenos = 0;
     _conceptosMalos = 0;
