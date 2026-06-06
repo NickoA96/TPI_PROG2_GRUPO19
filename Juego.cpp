@@ -30,8 +30,9 @@ Juego::Juego(){
 
     _vProyectiles[0] = new ProyectilChico;
     _vProyectiles[0]->posicionRandom();
+
     _vProyectiles[1] = new ProyectilMediano;
-     _vProyectiles[1]->posicionRandom();
+    _vProyectiles[1]->posicionRandom();
 
 }
 
@@ -103,7 +104,8 @@ void Juego::aplicarEfectoProyectil(int pos){
 void Juego::subirDificultad(){
     float segundosTranscurridos = _relojDificultad.getElapsedTime().asSeconds();
 
-    if(segundosTranscurridos >= 2.5f){
+    if(segundosTranscurridos >= 5.f){
+        _velocidadActual +=0.5f;
         if(_tiempoEntreProyectiles >0.5f){
             _tiempoEntreProyectiles -= 0.3f;
         }
@@ -112,7 +114,8 @@ void Juego::subirDificultad(){
         }
         for(int i = 0; i<100;i++){
             if(_vProyectiles[i] != nullptr){
-                _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad()+1.f);
+                _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad()+0.5f);
+
             }
         }
         _relojDificultad.restart();
@@ -149,6 +152,7 @@ void Juego::spawnearProyectiles(){
                        _vProyectiles[i] = new ProyectilChico;
                     }
                     _vProyectiles[i]->posicionRandom();
+                    _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad() + _velocidadActual);
                     break;
                 }
             }
@@ -207,6 +211,7 @@ void Juego::reiniciar(){
     _relojSpawn.restart();
     _relojDificultad.restart();
     _cantidadProyectiles = 2;
+    _velocidadActual = 0.f;
     _tiempoEntreProyectiles = 3.f;
     _jugador.reiniciar();
 

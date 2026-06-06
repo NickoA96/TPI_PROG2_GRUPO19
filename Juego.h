@@ -18,6 +18,7 @@ private:
 	sf::Clock _relojDificultad; /// reloj que cada cierto tiempo le sube la velocidad a los misiles
 	float _tiempoEntreProyectiles = 3.f; /// tiempo que tardan los proyectiles para reaparecer, a medida que pasa cierto tiempo va bajando ej = 15.f  y baja 14.f cada 15 sg
 	int _cantidadProyectiles = 2;
+	float _velocidadActual = 0.f;
     sf::Text _textTiempo;
     sf::Font _font;
 	sf::Sound _sonido_Colision;
