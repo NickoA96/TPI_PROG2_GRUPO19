@@ -1,0 +1,102 @@
+#include "Jugador.h"
+
+Jugador::Jugador(){
+
+    cargarTextura("alumno_sprite_trasera.png");
+    setPosition(375.f, 320.f);
+    setScale(0.4f, 0.4f);
+
+    _velocidad = 3.f;
+    _tiempoCursada = 30.f;
+    _conceptosBuenos = 0;
+    _conceptosMalos = 0;
+    _colorCambiado = false;
+
+};
+
+
+void Jugador::setTiempoIncial(float tiempo){
+    _tiempoCursada = tiempo;
+}
+void Jugador::moverConTeclado(){
+    float x = this->getPos().x;
+    float y = this->getPos().y;
+
+    ///se puede mover el jugador solamente cuando no este tocando ningun proyectil
+            //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -=velocidad; /// y - le velocidad
+            //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y +=velocidad;
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) x -=_velocidad;
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) x +=_velocidad;
+
+    this->setPosition(x, y);
+
+}
+
+void Jugador::limitarZona(){
+    float x = this->getPos().x;
+    float y = this->getPos().y;
+        if(x >= 750){x = x-_velocidad;}
+        if(x <= 0){x = x+_velocidad;}
+
+        this->setPosition(x,y);
+
+}
+void Jugador::actualizar(){
+    if(_colorCambiado){
+        if(_relojColor.getElapsedTime().asSeconds() >= 0.5f){
+            setColor(sf::Color::White);
+            _colorCambiado = false;
+            setScale(0.4f, 0.4f);
+        }
+    }
+    this->moverConTeclado();
+    this->limitarZona();
+}
+
+void Jugador::sumarTiempo(float segundos) {
+    _tiempoCursada += segundos;
+    _conceptosBuenos++;
+}
+
+void Jugador::restarTiempo(float segundos) {
+    _tiempoCursada -= segundos;
+    _conceptosMalos++;
+}
+
+float Jugador::getTiempoIncial()const {
+    return _tiempoCursada;
+}
+
+int Jugador::getPuntaje() const {
+    return _conceptosBuenos - _conceptosMalos;
+}
+
+bool Jugador::tiempoAgotado() const {
+    return _tiempoCursada <= 0;
+}
+
+
+void Jugador::cambiarColorTemporal(sf::Color _color){
+    this->setColor(_color);
+    if(_color == sf::Color::Green){
+        this->setScale(0.45f, 0.45f);
+    }else if (_color == sf::Color::Red){
+        this->setScale(0.38f, 0.38f);
+    }
+    _colorCambiado = true;
+    _relojColor.restart();
+}
+
+void Jugador::reiniciar(){
+
+    cargarTextura("alumno_sprite_trasera.png");
+    setPosition(375.f, 320.f);
+    setScale(0.4f, 0.4f);
+    _relojColor.restart();
+    _velocidad = 3.f;
+    _tiempoCursada = 30.f;
+    _conceptosBuenos = 0;
+    _conceptosMalos = 0;
+
+
+}

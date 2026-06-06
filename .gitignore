@@ -1,0 +1,51 @@
+# ── Compilados y binarios ──────────────────────────
+*.exe
+*.out
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# ── Carpetas de build ──────────────────────────────
+build/
+bin/
+obj/
+Release/
+Debug/
+x64/
+x86/
+
+# ── SFML (librerías, includes, dlls) ──────────────
+SFML/
+sfml/
+extlibs/
+include/
+lib/
+openal32.dll
+sfml-*.dll
+
+# ── IDEs y editores ────────────────────────────────
+.vs/
+*.user
+*.suo
+*.sdf
+*.VC.db
+*.VC.opendb
+.vscode/
+*.code-workspace
+*.cbp
+*.layout
+
+# ── CMake ─────────────────────────────────────────
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# ── Lo que SÍ se sube (no ignorar) ────────────────
+# ✔  *.cpp  *.h  main.cpp
+# ✔  fonts/arial.ttf  (u otras fuentes que uses)
+# ✔  assets/  (imágenes .png del juego, si querés incluirlas)
