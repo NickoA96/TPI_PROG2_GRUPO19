@@ -64,7 +64,6 @@ void Juego::chequearColisiones(){
             for(int i = 0; i<100; i++){
                 if(_vProyectiles[i]!= nullptr){
                     if(_jugador.getBounds().intersects(_vProyectiles[i]->getBounds())){
-                            _sonido_Colision.play();
                             aplicarEfectoProyectil(i);
                     }
                 }
@@ -80,6 +79,7 @@ void Juego::aplicarEfectoProyectil(int pos){
         _jugador.sumarTiempo(_vProyectiles[pos]->getSegundosEfecto());
     }else if(!_vProyectiles[pos]->getEsBueno()){
         _jugador.cambiarColorTemporal(sf::Color::Red);
+        _sonido_Colision.play();
         _jugador.restarTiempo(_vProyectiles[pos]->getSegundosEfecto());
     }
 
