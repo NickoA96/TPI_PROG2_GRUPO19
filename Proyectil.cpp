@@ -1,17 +1,17 @@
 #include "Proyectil.h"
-
-Proyectil::Proyectil():_velocidad(0.f), _esBueno(false), _segundosEfecto(0.f){};
+#include <iostream>
+Proyectil::Proyectil():_velocidad(0.f), _esBueno(false), _segundosEfecto(0.f){}
 
 void Proyectil::setVelocidad(float velocidad){
-    _velocidad= velocidad;
+    _velocidad=velocidad;
 }
 
 void Proyectil::setEsBueno(bool concepto){
-    _esBueno= concepto;
+    _esBueno=concepto;
 }
 
 void Proyectil::setSegundosEfecto(float tiempo){
-    _segundosEfecto= tiempo;
+    _segundosEfecto=tiempo;
 }
 
 float Proyectil::getVelocidad()const{
@@ -27,7 +27,7 @@ float Proyectil::getSegundosEfecto()const{
 }
 
 bool Proyectil::fueraPantalla()const {
-    return getPos().y > 553;
+    return getPos().y > 900;
 }
 
 void Proyectil::actualizarProyectil(){
@@ -45,6 +45,6 @@ void Proyectil::movimiento(){
 
 void Proyectil::posicionRandom(){
     float y = 180.f;
-    float x = rand() % 750;
+    float x = rand() % 1550;
     this->setPosition(x, y);
 }

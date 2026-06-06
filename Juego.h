@@ -20,6 +20,8 @@ private:
 	int _cantidadProyectiles = 2;
     sf::Text _textTiempo;
     sf::Font _font;
+    sf::SoundBuffer _sonido_Colision_Buffer;
+	sf::Sound _sonido_Colision;
 
 
 public:

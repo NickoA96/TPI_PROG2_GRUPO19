@@ -3,10 +3,10 @@
 Jugador::Jugador(){
 
     cargarTextura("alumno_sprite_trasera.png");
-    setPosition(375.f, 320.f);
+    setPosition(375.f, 700.f);
     setScale(0.4f, 0.4f);
 
-    _velocidad = 3.f;
+    _velocidad = 8.f;
     _tiempoCursada = 30.f;
     _conceptosBuenos = 0;
     _conceptosMalos = 0;
@@ -25,7 +25,7 @@ void Jugador::moverConTeclado(){
     ///se puede mover el jugador solamente cuando no este tocando ningun proyectil
             //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -=velocidad; /// y - le velocidad
             //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y +=velocidad;
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) x -=_velocidad;
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) x -=_velocidad;
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) x +=_velocidad;
 
     this->setPosition(x, y);
@@ -35,7 +35,7 @@ void Jugador::moverConTeclado(){
 void Jugador::limitarZona(){
     float x = this->getPos().x;
     float y = this->getPos().y;
-        if(x >= 750){x = x-_velocidad;}
+        if(x >= 1550){x = x-_velocidad;} /*Aca hay que hacer un pivot o calcular bien para poner la resolucion exacta, revisar*/
         if(x <= 0){x = x+_velocidad;}
 
         this->setPosition(x,y);
@@ -90,13 +90,14 @@ void Jugador::cambiarColorTemporal(sf::Color _color){
 void Jugador::reiniciar(){
 
     cargarTextura("alumno_sprite_trasera.png");
-    setPosition(375.f, 320.f);
+    setPosition(375.f, 700.f);
     setScale(0.4f, 0.4f);
-    _relojColor.restart();
-    _velocidad = 3.f;
+
+    _velocidad = 6.f;
     _tiempoCursada = 30.f;
     _conceptosBuenos = 0;
     _conceptosMalos = 0;
+    _colorCambiado = false;
 
 
 }

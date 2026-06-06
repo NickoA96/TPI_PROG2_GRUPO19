@@ -1,5 +1,3 @@
-
-
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include "Juego.h"
@@ -7,9 +5,8 @@ using namespace std;
 
 int main() {
     srand(time(0));
-
-    sf::RenderWindow window(sf::VideoMode(800, 533), "Prueba Juego");
-    //sf::RenderWindow window(sf::VideoMode(1280, 720), "Prueba Juego");
+    sf::RenderWindow window(sf::VideoMode(1600, 900), "Prueba Juego");
+    //probar con resolucion HD+, creo que da un buen margen y deberia verse bien con cualquier monitor moderno.
     window.setFramerateLimit(60);
 
     Juego juego;

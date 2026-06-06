@@ -6,16 +6,14 @@ class Proyectil : public Objeto {
 protected:
 	float _velocidad;
 	bool _esBueno;
-	float _segundosEfecto ;
+	float _segundosEfecto;
 
 public:
-	Proyectil();
-
+    Proyectil();
 	///set
 	void setVelocidad(float velocidad);
 	void setEsBueno(bool concepto);
 	void setSegundosEfecto(float tiempo);
-
 
 	///get
 	float getVelocidad()const;

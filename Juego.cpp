@@ -4,10 +4,10 @@ using namespace std;
 
 Juego::Juego(){
     ///FONDO
-    _fondo.cargarTextura("fondo.png");
+    _fondo.cargarTextura("fondo2.png");
     ///profesor
     _profesor.cargarTextura("profesor_sprite.png");
-    _profesor.setPosition(310.f, 20.f);
+    _profesor.setPosition(700.f, 25.f);
     _profesor.setScale(0.4f, 0.4f);
     ///letra tiempo
     _font.loadFromFile("arial.ttf");
@@ -15,7 +15,8 @@ Juego::Juego(){
     _textTiempo.setCharacterSize(25);
     _textTiempo.setFillColor(sf::Color::White);
     _textTiempo.setPosition(5.f, 5.f);
-
+    _sonido_Colision_Buffer.loadFromFile("osea.wav");
+    _sonido_Colision.setBuffer(_sonido_Colision_Buffer);
     inicializarArray();
 
     _vProyectiles[0] = new ProyectilChico;
@@ -63,6 +64,7 @@ void Juego::chequearColisiones(){
             for(int i = 0; i<100; i++){
                 if(_vProyectiles[i]!= nullptr){
                     if(_jugador.getBounds().intersects(_vProyectiles[i]->getBounds())){
+                            _sonido_Colision.play();
                             aplicarEfectoProyectil(i);
                     }
                 }
