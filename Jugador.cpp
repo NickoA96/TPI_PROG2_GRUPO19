@@ -26,7 +26,7 @@ void Jugador::moverConTeclado(){
             //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -=velocidad; /// y - le velocidad
             //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y +=velocidad;
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) x -=_velocidad;
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) x +=_velocidad;
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) x +=_velocidad;
 
     this->setPosition(x, y);
 
@@ -92,7 +92,7 @@ void Jugador::reiniciar(){
     cargarTextura("alumno_sprite_trasera.png");
     setPosition(375.f, 700.f);
     setScale(0.4f, 0.4f);
-
+    _relojColor.restart();
     _velocidad = 8.f;
     _tiempoCursada = 30.f;
     _conceptosBuenos = 0;

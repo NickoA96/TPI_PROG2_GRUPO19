@@ -13,10 +13,19 @@ Juego::Juego(){
     _font.loadFromFile("arial.ttf");
     _textTiempo.setFont(_font);
     _textTiempo.setCharacterSize(25);
-    _textTiempo.setFillColor(sf::Color::White);
-    _textTiempo.setPosition(5.f, 5.f);
+    //_textTiempo.setFillColor(sf::Color::White);
+    //_textTiempo.setPosition(5.f, 5.f);
+
+    ///centrar time y contorno ? queda mejor
+    _textTiempo.setFillColor(sf::Color::Red);
+    _textTiempo.setPosition(720.f, 0.f);
+    _textTiempo.setOutlineThickness(1.f);
+    _textTiempo.setOutlineColor(sf::Color::Black);
+
     _sonido_Colision_Buffer.loadFromFile("osea.wav");
     _sonido_Colision.setBuffer(_sonido_Colision_Buffer);
+    _sonido_Colision.setVolume(20.f);
+
     inicializarArray();
 
     _vProyectiles[0] = new ProyectilChico;
@@ -211,17 +220,17 @@ void Juego::reiniciar(){
     inicializarArray();
 
     ///FONDO
-    _fondo.cargarTextura("fondo.png");
+    //_fondo.cargarTextura("fondo.png");
     ///profesor
-    _profesor.cargarTextura("profesor_sprite.png");
-    _profesor.setPosition(310.f, 20.f);
-    _profesor.setScale(0.4f, 0.4f);
+    //_profesor.cargarTextura("profesor_sprite.png");
+    //_profesor.setPosition(310.f, 20.f);
+    //_profesor.setScale(0.4f, 0.4f);
     ///letra tiempo
-    _font.loadFromFile("arial.ttf");
-    _textTiempo.setFont(_font);
-    _textTiempo.setCharacterSize(25);
-    _textTiempo.setFillColor(sf::Color::White);
-    _textTiempo.setPosition(5.f, 5.f);
+    //_font.loadFromFile("arial.ttf");
+    //_textTiempo.setFont(_font);
+    //_textTiempo.setCharacterSize(25);
+    //_textTiempo.setFillColor(sf::Color::White);
+    //_textTiempo.setPosition(5.f, 5.f);
 
 
     _vProyectiles[0] = new ProyectilChico;
