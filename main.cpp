@@ -38,7 +38,7 @@ int main() {
 
     bool sonidoPausa=false;
 
-
+/// bucle
     while(window.isOpen()) {
         sf::Event event;
         while(window.pollEvent(event)) {
@@ -58,12 +58,14 @@ int main() {
                 if(estado==1){
                     estado=2;
                     sonidoPausa=true;
+                    juego->pausar();
                 }
                 else if(estado==2){
                     _sonido_Continuar.setVolume(60);
                     _sonido_Continuar.play();
                     musica.play();
                     estado=1;
+                    juego->reanudar();
                 }
             }
         }
@@ -82,6 +84,7 @@ int main() {
                 _sonido_Pausa.setVolume(60);
                 _sonido_Pausa.play();
                 sonidoPausa=false;
+
             }
             window.draw(*juego);
         }

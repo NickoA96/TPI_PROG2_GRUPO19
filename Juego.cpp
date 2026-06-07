@@ -14,10 +14,17 @@ Juego::Juego(){
     _textTiempo.setFont(_font);
     _textTiempo.setCharacterSize(25);
 
+    ///letra pausa
+    _textPausa.setFont(_font);
+    _textPausa.setCharacterSize(25);
+    _textPausa.setPosition(10.f, 865.f);
+    _textPausa.setOutlineThickness(5.f);
+    _textPausa.setString("Presione P para pausar la partida");
+
     ///estilo letra
     _textTiempo.setFillColor(sf::Color::Red);
     _textTiempo.setPosition(720.f, 0.f);
-    _textTiempo.setOutlineThickness(1.f);
+    _textTiempo.setOutlineThickness(2.f);
     _textTiempo.setOutlineColor(sf::Color::Black);
 
 
@@ -53,6 +60,7 @@ void Juego::draw(sf::RenderTarget& target, sf::RenderStates states) const{
             }
             target.draw(_jugador);
             target.draw(_textTiempo);
+            target.draw(_textPausa);
 }
 
 void Juego::actualizarJuego(){
@@ -110,7 +118,7 @@ void Juego::subirDificultad(){
     float segundosTranscurridos = _relojDificultad.getElapsedTime().asSeconds();
 
     if(segundosTranscurridos >= 5.f){
-        _velocidadActual +=0.5f;
+        _velocidadAcumulada +=0.5f;
         if(_tiempoEntreProyectiles >0.5f){
             _tiempoEntreProyectiles -= 0.3f;
         }
@@ -157,7 +165,7 @@ void Juego::spawnearProyectiles(){
                        _vProyectiles[i] = new ProyectilChico;
                     }
                     _vProyectiles[i]->posicionRandom();
-                    _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad() + _velocidadActual);
+                    _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad() + _velocidadAcumulada);
                     break;
                 }
             }
@@ -178,6 +186,8 @@ float Juego::getTiempoXPartida() {
 
 
 bool Juego::juegoTerminado() const {
+    if(_estaPausado) return false;
+
     if ((_jugador.getTiempoIncial() - _tiempoJugador.getElapsedTime().asSeconds()) <= 0){
         return true;
     }else{
@@ -216,8 +226,9 @@ void Juego::reiniciar(){
     _relojSpawn.restart();
     _relojDificultad.restart();
     _cantidadProyectiles = 2;
-    _velocidadActual = 0.f;
+    _velocidadAcumulada = 0.f;
     _tiempoEntreProyectiles = 3.f;
+    _estaPausado = false;
     _jugador.reiniciar();
 
     for(int i = 0; i < 100; i++){
@@ -247,6 +258,17 @@ void Juego::reiniciar(){
     _vProyectiles[0]->posicionRandom();
     _vProyectiles[1] = new ProyectilMediano;
     _vProyectiles[1]->posicionRandom();
+}
+
+void Juego::pausar(){
+    _tiempoGuardado = getTiempoXPartida();
+    _estaPausado = true;
+
+}
+void Juego::reanudar(){
+    _jugador.setTiempoIncial(_tiempoGuardado);
+    _tiempoJugador.restart();
+    _estaPausado =false;
 }
 
 

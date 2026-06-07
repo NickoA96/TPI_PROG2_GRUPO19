@@ -3,7 +3,7 @@
 Jugador::Jugador(){
 
     cargarTextura("alumno_sprite_trasera.png");
-    setPosition(375.f, 700.f);
+    setPosition(750.f, 700.f);
     setScale(0.4f, 0.4f);
 
     _velocidad = 8.f;
@@ -18,9 +18,6 @@ void Jugador::moverConTeclado(){
     float x = this->getPos().x;
     float y = this->getPos().y;
 
-    ///se puede mover el jugador solamente cuando no este tocando ningun proyectil
-            //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -=velocidad; /// y - le velocidad
-            //if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y +=velocidad;
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) x -=_velocidad;
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) x +=_velocidad;
 
@@ -61,6 +58,10 @@ void Jugador::restarTiempo(float segundos) {
 
 float Jugador::getTiempoIncial()const {
     return _tiempoCursada;
+}
+
+void Jugador::setTiempoIncial(float tiempo) {
+    _tiempoCursada = tiempo;
 }
 
 int Jugador::getPuntaje() const {
