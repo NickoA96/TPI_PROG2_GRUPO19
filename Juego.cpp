@@ -28,6 +28,7 @@ Juego::Juego(){
     _sonido_Colision_Correcto.setBuffer(_sonido_Colision_Correcto_Buffer);
     _sonido_Colision_Correcto.setVolume(20.f);
 
+
     inicializarArray();
 
     _vProyectiles[0] = new ProyectilChico;
@@ -142,7 +143,7 @@ void Juego::spawnearProyectiles(){
             contadorProyectiles++;
         }
     }
-    ///verifico tiempo con el reloj que s reinicia cada cierto tiempo
+    ///verifico tiempo con el reloj que se reinicia cada cierto tiempo
     if(_relojSpawn.getElapsedTime().asSeconds() >= _tiempoEntreProyectiles ){
         for(int i = 0; i<100; i++){
             if(contadorProyectiles < _cantidadProyectiles) {

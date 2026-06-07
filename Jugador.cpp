@@ -14,10 +14,6 @@ Jugador::Jugador(){
 
 };
 
-
-void Jugador::setTiempoIncial(float tiempo){
-    _tiempoCursada = tiempo;
-}
 void Jugador::moverConTeclado(){
     float x = this->getPos().x;
     float y = this->getPos().y;

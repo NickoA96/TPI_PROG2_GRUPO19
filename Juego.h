@@ -27,6 +27,7 @@ private:
     sf::SoundBuffer _sonido_Colision_Correcto_Buffer;
 
 
+
 public:
 	Juego();
 	~Juego();
