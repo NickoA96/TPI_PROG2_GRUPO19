@@ -12,6 +12,7 @@ public:
   int getAnio() const;
 
   void setCurrentDate();
+  void imprimirFecha();
 
 private:
     int _dia, _mes, _anio;

@@ -37,6 +37,8 @@ sfml-*.dll
 *.code-workspace
 *.cbp
 *.layout
+*.cscope_file_list
+*.cscope_file_list.in
 
 # ── CMake ─────────────────────────────────────────
 CMakeCache.txt
