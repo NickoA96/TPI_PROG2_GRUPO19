@@ -2,6 +2,7 @@
 #include <ctime>
 #include "Juego.h"
 #include <iostream>
+#include "Menu.h"
 using namespace std;
 
 int main() {
@@ -11,23 +12,9 @@ int main() {
     Juego* juego = nullptr;
 
     ///menu
+    Menu menu;
     //ESTADO
-    int estado=0; //0-Menu Principal, 1-Jugando, 2-Pausa
-    sf::Text textoMenu;
-    sf::Font fuenteMenu;
-    if(!fuenteMenu.loadFromFile("arial.ttf")){
-        cout << "Error al cargar fuente.";
-    };
-    textoMenu.setFont(fuenteMenu);
-    textoMenu.setString("Presione X para empezar a jugar.\nPresione Z para salir.");
-
-    sf::Text textGameOver;
-    textGameOver.setFont(fuenteMenu);
-    textGameOver.setString("Game Over");
-    sf::Text textGameOver2;
-    textGameOver2.setFont(fuenteMenu);
-    textGameOver2.setPosition(10,50);
-    textGameOver2.setString("Para volver a jugar presione C");
+    int estado=0; //0-Menu Principal, 1-Jugando, 2-Pausa, 3-GameOver
 
     ///musica
     sf::Music musica;
@@ -97,7 +84,8 @@ int main() {
                 _sonido_Inicio.play();
                 sonidoInicio=false;
             }
-            window.draw(textoMenu);
+            menu.setMensaje(estado);
+            window.draw(menu);
         }
         if(juego != nullptr && !juego->juegoTerminado() && estado==1) {
             juego->actualizarJuego();
@@ -113,9 +101,9 @@ int main() {
         }
         if(juego != nullptr && juego->juegoTerminado()){
             //Hacer sonido de salida de juego si llega le tiempo.
-            window.draw(textGameOver);
-            window.draw(textGameOver2);
-            musica.pause();
+            menu.setMensaje(3);
+            window.draw(menu);
+            musica.stop();
         }
 
         window.display();

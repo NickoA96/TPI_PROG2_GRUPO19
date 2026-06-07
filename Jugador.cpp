@@ -68,8 +68,6 @@ int Jugador::getPuntaje() const {
     return _conceptosBuenos - _conceptosMalos;
 }
 
-
-
 void Jugador::cambiarColorTemporal(sf::Color _color){
     this->setColor(_color);
     if(_color == sf::Color::Green){
@@ -93,6 +91,5 @@ void Jugador::reiniciar(){
     _conceptosBuenos = 0;
     _conceptosMalos = 0;
     _colorCambiado = false;
-
 
 }
