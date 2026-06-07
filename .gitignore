@@ -50,4 +50,4 @@ Makefile
 # ── Lo que SÍ se sube (no ignorar) ────────────────
 # ✔  *.cpp  *.h  main.cpp
 # ✔  fonts/arial.ttf  (u otras fuentes que uses)
-# ✔  assets/  (imágenes .png del juego, si querés incluirlas)
+# ✔  assets/  
