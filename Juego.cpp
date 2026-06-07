@@ -176,7 +176,7 @@ void Juego::spawnearProyectiles(){
 }
 
 
-float Juego::getTiempoXPartida() {
+float Juego::getTiempoXPartida()const {
 
  float tiempoRestante = _jugador.getTiempoIncial();
  tiempoRestante -= _tiempoJugador.getElapsedTime().asSeconds();
@@ -188,7 +188,7 @@ float Juego::getTiempoXPartida() {
 bool Juego::juegoTerminado() const {
     if(_estaPausado) return false;
 
-    if ((_jugador.getTiempoIncial() - _tiempoJugador.getElapsedTime().asSeconds()) <= 0){
+    if (this->getTiempoXPartida()<= 0){
         return true;
     }else{
         return false;
@@ -239,20 +239,6 @@ void Juego::reiniciar(){
     }
 
     inicializarArray();
-
-    ///FONDO
-    //_fondo.cargarTextura("fondo.png");
-    ///profesor
-    //_profesor.cargarTextura("profesor_sprite.png");
-    //_profesor.setPosition(310.f, 20.f);
-    //_profesor.setScale(0.4f, 0.4f);
-    ///letra tiempo
-    //_font.loadFromFile("arial.ttf");
-    //_textTiempo.setFont(_font);
-    //_textTiempo.setCharacterSize(25);
-    //_textTiempo.setFillColor(sf::Color::White);
-    //_textTiempo.setPosition(5.f, 5.f);
-
 
     _vProyectiles[0] = new ProyectilChico;
     _vProyectiles[0]->posicionRandom();

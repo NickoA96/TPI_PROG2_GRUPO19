@@ -68,9 +68,6 @@ int Jugador::getPuntaje() const {
     return _conceptosBuenos - _conceptosMalos;
 }
 
-bool Jugador::tiempoAgotado() const {
-    return _tiempoCursada <= 0;
-}
 
 
 void Jugador::cambiarColorTemporal(sf::Color _color){
@@ -87,8 +84,9 @@ void Jugador::cambiarColorTemporal(sf::Color _color){
 void Jugador::reiniciar(){
 
     cargarTextura("alumno_sprite_trasera.png");
-    setPosition(375.f, 700.f);
+    setPosition(750.f, 700.f);
     setScale(0.4f, 0.4f);
+    setColor(sf::Color::White);
     _relojColor.restart();
     _velocidad = 8.f;
     _tiempoCursada = 30.f;

@@ -37,7 +37,7 @@ public:
 	~Juego();
 	void actualizarTextoTiempo();
 	void inicializarArray();
-    float getTiempoXPartida();
+    float getTiempoXPartida()const;
 	void actualizarJuego(); //ok
 	void chequearColisiones(); //ok
 	void aplicarEfectoProyectil(int pos); //ok

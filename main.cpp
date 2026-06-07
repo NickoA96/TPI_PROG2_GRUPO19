@@ -21,6 +21,13 @@ int main() {
     textoMenu.setFont(fuenteMenu);
     textoMenu.setString("Presiona X para empezar a jugar.\nPresione Z para salir.");
 
+    sf::Text textGameOver;
+    textGameOver.setFont(fuenteMenu);
+    textGameOver.setString("Game Over");
+    sf::Text textGameOver2;
+    textGameOver2.setFont(fuenteMenu);
+    textGameOver2.setPosition(10,50);
+    textGameOver2.setString("Para volver a jugar presione C");
 
     ///musica
     sf::Music musica;
@@ -47,7 +54,7 @@ int main() {
                 window.close();
             }
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::X && estado!=1){
-                musica.setVolume(20);
+                musica.setVolume(5);
                 musica.play();
                 if(estado==0){
                     juego = new Juego();
@@ -55,7 +62,7 @@ int main() {
                 }
             }
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P){
-                if(estado==1){
+                if(estado==1 && !juego->juegoTerminado()){
                     estado=2;
                     sonidoPausa=true;
                     juego->pausar();
@@ -66,6 +73,14 @@ int main() {
                     musica.play();
                     estado=1;
                     juego->reanudar();
+                }
+            }
+
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::C){
+                if(juego != nullptr && juego->juegoTerminado()){
+                    juego->reiniciar();
+                    musica.play();
+                    estado=1;
                 }
             }
         }
@@ -87,6 +102,11 @@ int main() {
 
             }
             window.draw(*juego);
+        }
+        if(juego != nullptr && juego->juegoTerminado()){
+            window.draw(textGameOver);
+            window.draw(textGameOver2);
+            musica.pause();
         }
 
         window.display();

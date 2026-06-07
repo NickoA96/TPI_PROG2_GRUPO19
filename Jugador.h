@@ -19,7 +19,6 @@ public:
 	void actualizar();
 	void sumarTiempo(float segundos);
 	void restarTiempo(float segundos);
-	bool tiempoAgotado() const;
     void cambiarColorTemporal(sf::Color);
 	void setTiempoIncial(float tiempo);
     void reiniciar();
