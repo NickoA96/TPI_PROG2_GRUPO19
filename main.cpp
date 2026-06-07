@@ -12,14 +12,14 @@ int main() {
 
     ///menu
     //ESTADO
-    int estado=0; //0-Menu, 1-Jugando, 2-Pausa, 3-Menu Finalizada Partida?
+    int estado=0; //0-Menu Principal, 1-Jugando, 2-Pausa
     sf::Text textoMenu;
     sf::Font fuenteMenu;
     if(!fuenteMenu.loadFromFile("arial.ttf")){
         cout << "Error al cargar fuente.";
     };
     textoMenu.setFont(fuenteMenu);
-    textoMenu.setString("Presiona X para empezar a jugar.\nPresione Z para salir.");
+    textoMenu.setString("Presione X para empezar a jugar.\nPresione Z para salir.");
 
     sf::Text textGameOver;
     textGameOver.setFont(fuenteMenu);
@@ -34,6 +34,10 @@ int main() {
     if (!musica.openFromFile("musica.mp3")) {
         std::cout << "Error al abrir el archivo de musica." << std::endl;
     }
+    sf::SoundBuffer _sonido_Inicio_Buffer;
+    _sonido_Inicio_Buffer.loadFromFile("bienvenido.wav");
+    sf::Sound _sonido_Inicio;
+    _sonido_Inicio.setBuffer(_sonido_Inicio_Buffer);
     sf::SoundBuffer _sonido_Pausa_Buffer;
     sf::Sound _sonido_Pausa;
     sf::SoundBuffer _sonido_Continuar_Buffer;
@@ -44,6 +48,7 @@ int main() {
     _sonido_Continuar.setBuffer(_sonido_Continuar_Buffer);
 
     bool sonidoPausa=false;
+    bool sonidoInicio=true;
 
 /// bucle
     while(window.isOpen()) {
@@ -54,7 +59,7 @@ int main() {
                 window.close();
             }
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::X && estado!=1){
-                musica.setVolume(5);
+                musica.setVolume(15);
                 musica.play();
                 if(estado==0){
                     juego = new Juego();
@@ -88,6 +93,10 @@ int main() {
         window.clear();
 
         if(estado==0){
+            if(sonidoInicio){
+                _sonido_Inicio.play();
+                sonidoInicio=false;
+            }
             window.draw(textoMenu);
         }
         if(juego != nullptr && !juego->juegoTerminado() && estado==1) {
@@ -99,11 +108,11 @@ int main() {
                 _sonido_Pausa.setVolume(60);
                 _sonido_Pausa.play();
                 sonidoPausa=false;
-
             }
             window.draw(*juego);
         }
         if(juego != nullptr && juego->juegoTerminado()){
+            //Hacer sonido de salida de juego si llega le tiempo.
             window.draw(textGameOver);
             window.draw(textGameOver2);
             musica.pause();
