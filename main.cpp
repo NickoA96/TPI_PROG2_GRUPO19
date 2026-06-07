@@ -3,10 +3,17 @@
 #include "Juego.h"
 #include <iostream>
 #include "Menu.h"
+#include "Fecha.h"
+
 using namespace std;
 
 int main() {
     srand(time(0));
+    Fecha _fechaAcual;
+    _fechaAcual.setCurrentDate();
+    _fechaAcual.imprimirFecha();
+
+
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Prueba Juego");
     window.setFramerateLimit(60);
     Juego* juego = nullptr;

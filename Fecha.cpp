@@ -1,5 +1,7 @@
 #include <chrono>
 #include "Fecha.h"
+#include <iostream>
+
 
 Fecha::Fecha() : _dia(1), _mes(1), _anio(2000) {}
 
@@ -37,4 +39,10 @@ void Fecha::setCurrentDate() {
     _dia = localTime->tm_mday;
     _mes = localTime->tm_mon + 1;
     _anio = localTime->tm_year + 1900;
+}
+
+void Fecha::imprimirFecha(){
+      std::cout << "Fecha de ultima partida: " << getDia()
+         << "/" <<getMes()
+         << "/" <<getAnio() << std::endl;
 }
