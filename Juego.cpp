@@ -13,14 +13,15 @@ Juego::Juego(){
     _font.loadFromFile("arial.ttf");
     _textTiempo.setFont(_font);
     _textTiempo.setCharacterSize(25);
-    //_textTiempo.setFillColor(sf::Color::White);
-    //_textTiempo.setPosition(5.f, 5.f);
 
-    ///centrar time y contorno ? queda mejor
+    ///estilo letra
     _textTiempo.setFillColor(sf::Color::Red);
     _textTiempo.setPosition(720.f, 0.f);
     _textTiempo.setOutlineThickness(1.f);
     _textTiempo.setOutlineColor(sf::Color::Black);
+
+
+    ///sonidos
     _sonido_Colision_Erroneo_Buffer.loadFromFile("erroneo.wav");
     _sonido_Colision_Erroneo.setBuffer(_sonido_Colision_Erroneo_Buffer);
     _sonido_Colision_Erroneo.setVolume(20.f);
@@ -40,18 +41,18 @@ Juego::Juego(){
 }
 
 
-void Juego::dibujar(sf::RenderWindow& window){
+void Juego::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 
-            window.draw(_fondo);
-            window.draw(_profesor);
+            target.draw(_fondo);
+            target.draw(_profesor);
 
             for(int i = 0; i<100; i++){
                 if(_vProyectiles[i]!=nullptr){
-                    window.draw(*_vProyectiles[i]);
+                    target.draw(*_vProyectiles[i]);
                 }
             }
-            window.draw(_jugador);
-            window.draw(_textTiempo);
+            target.draw(_jugador);
+            target.draw(_textTiempo);
 }
 
 void Juego::actualizarJuego(){
@@ -94,15 +95,13 @@ void Juego::aplicarEfectoProyectil(int pos){
         _sonido_Colision_Correcto.play();
     }else if(!_vProyectiles[pos]->getEsBueno()){
         _jugador.cambiarColorTemporal(sf::Color::Red);
+        _jugador.restarTiempo(_vProyectiles[pos]->getSegundosEfecto());
         _sonido_Colision_Erroneo.setPitch(0.7f + (rand()%3/10.f));
         _sonido_Colision_Erroneo.play();
-        _jugador.restarTiempo(_vProyectiles[pos]->getSegundosEfecto());
     }
 
     delete _vProyectiles [pos];
     _vProyectiles [pos] = nullptr;
-
-
 
 }
 
@@ -115,7 +114,7 @@ void Juego::subirDificultad(){
         if(_tiempoEntreProyectiles >0.5f){
             _tiempoEntreProyectiles -= 0.3f;
         }
-        if(_cantidadProyectiles < 25){
+        if(_cantidadProyectiles < 50){
             _cantidadProyectiles++;
         }
         for(int i = 0; i<100;i++){

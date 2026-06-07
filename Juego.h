@@ -7,7 +7,7 @@
 #include "ProyectilGrande.h"
 #include "ProyectilChico.h"
 
-class Juego {
+class Juego : public sf::Drawable{
 private:
 	Jugador _jugador;
 	Objeto _profesor;
@@ -26,7 +26,8 @@ private:
     sf::Sound _sonido_Colision_Correcto;
     sf::SoundBuffer _sonido_Colision_Correcto_Buffer;
 
-
+protected:
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
 	Juego();
@@ -37,7 +38,6 @@ public:
 	void actualizarJuego(); //ok
 	void chequearColisiones(); //ok
 	void aplicarEfectoProyectil(int pos); //ok
-	void dibujar(sf::RenderWindow& window); //ok
 	void subirDificultad();                 // ok              // controla cuando agregar mas misiles -> modifica _tiempoEntreProyectiles y _velocidad del proyectil
 	void spawnearProyectiles();             //ok/// funcion que spawnea misiles en cierto tiempo, a cierta velocidad y el proyectil que sale depende del rand()
 	bool juegoTerminado()const ; //ok   /// verifica cuando el tiempo
