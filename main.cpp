@@ -20,6 +20,7 @@ int main() {
 
     ///menu
     Menu menu;
+    menu.mostrarMenuPrincipal();
     //ESTADO
     int estado=0; //0-Menu Principal, 1-Jugando, 2-Pausa, 3-GameOver
 
@@ -61,12 +62,12 @@ int main() {
                 }
             }
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P){
-                if(estado==1 && !juego->juegoTerminado()){
+                if(juego != nullptr && estado==1 && !juego->juegoTerminado()){
                     estado=2;
                     sonidoPausa=true;
                     juego->pausar();
                 }
-                else if(estado==2){
+                else if(juego != nullptr && estado==2){
                     _sonido_Continuar.setVolume(60);
                     _sonido_Continuar.play();
                     musica.play();
@@ -82,6 +83,13 @@ int main() {
                     estado=1;
                 }
             }
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D){
+                if(juego != nullptr && juego->juegoTerminado()){
+                    delete juego; /// como ya se jugo borro el juego ya que no se si se juega otra vez
+                    juego = nullptr; /// apunto a null ptr
+                    estado = 0; /// vuelvo a menu
+                }
+            }
         }
 
         window.clear();
@@ -91,7 +99,7 @@ int main() {
                 _sonido_Inicio.play();
                 sonidoInicio=false;
             }
-            menu.imprimirTextoEstado(estado);
+            menu.mostrarMenuPrincipal();
             window.draw(menu);
         }
         if(juego != nullptr && !juego->juegoTerminado() && estado==1) {
@@ -106,9 +114,9 @@ int main() {
             }
             window.draw(*juego);
         }
-        if(juego != nullptr && juego->juegoTerminado()){
+        if(juego != nullptr && juego->juegoTerminado() && estado !=0){
             //Hacer sonido de salida de juego si llega le tiempo.
-            menu.imprimirTextoEstado(3);
+            menu.mostrarGameOver(juego->getPuntaje());
             window.draw(menu);
             musica.stop();
         }

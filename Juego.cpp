@@ -281,7 +281,9 @@ float Juego::evitarSuperposicionProyectiles(){
     }
     return x;
 }
-
+int Juego::getPuntaje() const{
+    return _jugador.getPuntaje();
+}
 
 Juego::~Juego() {
     for(int i = 0; i < MAX_PROYECTILES; i++) {
