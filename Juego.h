@@ -47,4 +47,6 @@ public:
 	void reiniciar();           //ok /// inicia con reloj en 0, puntake 0, y 2 proyectiles, podria llamar al constructor directmanete ?
 	void pausar();
 	void reanudar();
+
+    float evitarSuperposicionProyectiles();
 };

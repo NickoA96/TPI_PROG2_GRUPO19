@@ -164,7 +164,8 @@ void Juego::spawnearProyectiles(){
                         _vProyectiles[i] = new ProyectilGrande;
                        //_vProyectiles[i] = new ProyectilChico;
                     }
-                    _vProyectiles[i]->posicionRandom();
+                    float x = evitarSuperposicionProyectiles();
+                    _vProyectiles[i]->posicionRandom(x);
                     _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad() + _velocidadAcumulada);
                     break;
                 }
@@ -203,8 +204,9 @@ void Juego::inicializarArray(){
 
 
 void Juego::actualizarTextoTiempo(){
-    int minutos = (int)getTiempoXPartida() / 60;
-    int segundos = (int)getTiempoXPartida() % 60;
+    float tiempoActual = getTiempoXPartida();
+    int minutos = (int)tiempoActual / 60;
+    int segundos = (int)tiempoActual % 60;
 
     string textoSegundos;
     string textoMinutos;
@@ -238,8 +240,6 @@ void Juego::reiniciar(){
             }
     }
 
-    inicializarArray();
-
     _vProyectiles[0] = new ProyectilChico;
     _vProyectiles[0]->posicionRandom();
     _vProyectiles[1] = new ProyectilMediano;
@@ -255,6 +255,31 @@ void Juego::reanudar(){
     _jugador.setTiempoIncial(_tiempoGuardado);
     _tiempoJugador.restart();
     _estaPausado =false;
+}
+
+float Juego::evitarSuperposicionProyectiles(){
+
+    ProyectilChico nuevoProyectil;
+    nuevoProyectil.posicionRandom();
+    float x = nuevoProyectil.getPos().x;
+    bool posicionInvalida = true;
+
+    while(posicionInvalida){
+        posicionInvalida = false;
+        for(int i=0; i<100;i++){
+            if(_vProyectiles[i]!= nullptr){
+                //if(_vProyectiles[i]->getPos().x == x){ /// riesgo xq como son float puede dar error, mejor usar abs que compara el valor absoluto
+                if(abs(_vProyectiles[i]->getPos().x - x) < 50.f){
+                    posicionInvalida = true;
+                }
+            }
+        }
+        if(posicionInvalida){
+            nuevoProyectil.posicionRandom();
+            x = nuevoProyectil.getPos().x;
+        }
+    }
+    return x;
 }
 
 

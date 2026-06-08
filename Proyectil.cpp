@@ -50,3 +50,8 @@ void Proyectil::posicionRandom(){
     float x = rand() % 1550;
     this->setPosition(x, y);
 }
+
+void Proyectil::posicionRandom(float x){
+    float y = 180.f;
+    this->setPosition(x, y);
+}

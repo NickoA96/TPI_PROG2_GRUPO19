@@ -1,5 +1,4 @@
-#ifndef MENU_H
-#define MENU_H
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -17,4 +16,4 @@ class Menu : public sf::Drawable{
         sf::Font _fuente;
 };
 
-#endif // MENU_H
+

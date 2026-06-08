@@ -21,6 +21,7 @@ public:
 	float getSegundosEfecto()const;
     bool fueraPantalla() const;
     virtual void posicionRandom();
+    virtual void posicionRandom(float x);
 
 	void actualizarProyectil();
 

@@ -10,6 +10,7 @@ public:
 
 	void movimiento() override;
 	void posicionRandom() override;
+	void posicionRandom(float x) override;
 };
 
 

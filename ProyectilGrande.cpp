@@ -31,3 +31,9 @@ float y = 180.f;
     this->setPosition(x, y);
     _posXInicio=x;
 }
+
+void ProyectilGrande::posicionRandom(float x){
+    float y = 180.f;
+    this->setPosition(x, y);
+    _posXInicio = x;
+}
