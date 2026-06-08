@@ -7,8 +7,6 @@ protected:
 	float _velocidad;
 	bool _esBueno;
 	float _segundosEfecto;
-	float _tiempo;
-	float _posXInicio;
 
 public:
     Proyectil();
@@ -22,7 +20,7 @@ public:
 	bool getEsBueno() const;
 	float getSegundosEfecto()const;
     bool fueraPantalla() const;
-    void posicionRandom();
+    virtual void posicionRandom();
 
 	void actualizarProyectil();
 

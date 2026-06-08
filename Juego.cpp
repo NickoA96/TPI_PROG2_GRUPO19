@@ -161,8 +161,8 @@ void Juego::spawnearProyectiles(){
                     }else if(tipoProyectil ==1){
                         _vProyectiles[i] = new ProyectilMediano;
                     }else if(tipoProyectil ==2){
-                       // _vProyectiles[i] = new ProyectilGrande;
-                       _vProyectiles[i] = new ProyectilChico;
+                        _vProyectiles[i] = new ProyectilGrande;
+                       //_vProyectiles[i] = new ProyectilChico;
                     }
                     _vProyectiles[i]->posicionRandom();
                     _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad() + _velocidadAcumulada);
