@@ -7,7 +7,7 @@ class Menu : public sf::Drawable{
     public:
         Menu();
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-        void setMensaje(const int estado);
+        void imprimirTextoEstado(const int estado);
     protected:
 
     private:

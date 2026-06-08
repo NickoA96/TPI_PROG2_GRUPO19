@@ -9,9 +9,9 @@ using namespace std;
 
 int main() {
     srand(time(0));
-    Fecha _fechaAcual;
-    _fechaAcual.setCurrentDate();
-    _fechaAcual.imprimirFecha();
+    Fecha _fechaActual;
+    _fechaActual.setCurrentDate();
+    _fechaActual.imprimirFecha();
 
 
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Prueba Juego");
@@ -91,7 +91,7 @@ int main() {
                 _sonido_Inicio.play();
                 sonidoInicio=false;
             }
-            menu.setMensaje(estado);
+            menu.imprimirTextoEstado(estado);
             window.draw(menu);
         }
         if(juego != nullptr && !juego->juegoTerminado() && estado==1) {
@@ -108,7 +108,7 @@ int main() {
         }
         if(juego != nullptr && juego->juegoTerminado()){
             //Hacer sonido de salida de juego si llega le tiempo.
-            menu.setMensaje(3);
+            menu.imprimirTextoEstado(3);
             window.draw(menu);
             musica.stop();
         }

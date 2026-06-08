@@ -20,7 +20,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states)const {
         target.draw(_texto, states);
 }
 
-void Menu::setMensaje(const int estado){
+void Menu::imprimirTextoEstado(const int estado){
     if(estado==0){
         _texto.setString(_textoMenuPrincipal);
     }

@@ -7,6 +7,8 @@ protected:
 	float _velocidad;
 	bool _esBueno;
 	float _segundosEfecto;
+	float _tiempo;
+	float _posXInicio;
 
 public:
     Proyectil();
@@ -25,5 +27,6 @@ public:
 	void actualizarProyectil();
 
 	virtual void movimiento();
+	//virtual void movimientoOndulado();
 
 };

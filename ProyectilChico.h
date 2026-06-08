@@ -5,6 +5,7 @@ class ProyectilChico : public Proyectil {
 private:
 public:
 	ProyectilChico();
+
 };
 
 
