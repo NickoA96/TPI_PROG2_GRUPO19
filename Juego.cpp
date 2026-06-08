@@ -53,7 +53,7 @@ void Juego::draw(sf::RenderTarget& target, sf::RenderStates states) const{
             target.draw(_fondo);
             target.draw(_profesor);
 
-            for(int i = 0; i<100; i++){
+            for(int i = 0; i<MAX_PROYECTILES; i++){
                 if(_vProyectiles[i]!=nullptr){
                     target.draw(*_vProyectiles[i]);
                 }
@@ -66,7 +66,7 @@ void Juego::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 void Juego::actualizarJuego(){
 
     _jugador.actualizar();
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < MAX_PROYECTILES; i++) {
         if(_vProyectiles[i] != nullptr) {
             _vProyectiles[i]->actualizarProyectil();
             if(_vProyectiles[i]->fueraPantalla()){
@@ -83,7 +83,7 @@ void Juego::actualizarJuego(){
 }
 
 void Juego::chequearColisiones(){
-            for(int i = 0; i<100; i++){
+            for(int i = 0; i<MAX_PROYECTILES; i++){
                 if(_vProyectiles[i]!= nullptr){
                     if(_jugador.getBounds().intersects(_vProyectiles[i]->getBounds())){
                             aplicarEfectoProyectil(i);
@@ -122,10 +122,10 @@ void Juego::subirDificultad(){
         if(_tiempoEntreProyectiles >0.5f){
             _tiempoEntreProyectiles -= 0.3f;
         }
-        if(_cantidadProyectiles < 50){
+        if(_cantidadProyectiles < MAX_PROYECTILES){
             _cantidadProyectiles++;
         }
-        for(int i = 0; i<100;i++){
+        for(int i = 0; i<MAX_PROYECTILES;i++){
             if(_vProyectiles[i] != nullptr){
                 _vProyectiles[i]->setVelocidad(_vProyectiles[i]->getVelocidad()+0.5f);
 
@@ -145,14 +145,14 @@ void Juego::spawnearProyectiles(){
 
 
     ///cuento proyectiles activos
-    for(int i =0 ; i<100; i++){
+    for(int i =0 ; i<MAX_PROYECTILES; i++){
         if(_vProyectiles[i] != nullptr){
             contadorProyectiles++;
         }
     }
     ///verifico tiempo con el reloj que se reinicia cada cierto tiempo
     if(_relojSpawn.getElapsedTime().asSeconds() >= _tiempoEntreProyectiles ){
-        for(int i = 0; i<100; i++){
+        for(int i = 0; i<MAX_PROYECTILES; i++){
             if(contadorProyectiles < _cantidadProyectiles) {
                 if(_vProyectiles[i]== nullptr){
                     tipoProyectil = rand() % 3;
@@ -197,7 +197,7 @@ bool Juego::juegoTerminado() const {
 }
 
 void Juego::inicializarArray(){
-    for(int i = 0; i<100; i++){
+    for(int i = 0; i<MAX_PROYECTILES; i++){
         _vProyectiles[i] = nullptr;
     }
 }
@@ -233,7 +233,7 @@ void Juego::reiniciar(){
     _estaPausado = false;
     _jugador.reiniciar();
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < MAX_PROYECTILES; i++){
             if(_vProyectiles[i]!=nullptr){
                 delete _vProyectiles[i];
                 _vProyectiles[i] = nullptr;
@@ -266,10 +266,10 @@ float Juego::evitarSuperposicionProyectiles(){
 
     while(posicionInvalida){
         posicionInvalida = false;
-        for(int i=0; i<100;i++){
+        for(int i=0; i<MAX_PROYECTILES;i++){
             if(_vProyectiles[i]!= nullptr){
                 //if(_vProyectiles[i]->getPos().x == x){ /// riesgo xq como son float puede dar error, mejor usar abs que compara el valor absoluto
-                if(abs(_vProyectiles[i]->getPos().x - x) < 50.f){
+                if(abs(_vProyectiles[i]->getPos().x - x) < 30.f){
                     posicionInvalida = true;
                 }
             }
@@ -284,7 +284,7 @@ float Juego::evitarSuperposicionProyectiles(){
 
 
 Juego::~Juego() {
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < MAX_PROYECTILES; i++) {
         if(_vProyectiles[i] != nullptr) {
             delete _vProyectiles[i];
             _vProyectiles[i] = nullptr;

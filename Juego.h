@@ -12,7 +12,8 @@ private:
 	Jugador _jugador;
 	Objeto _profesor;
 	Objeto _fondo;
-	Proyectil* _vProyectiles[100];
+	const int MAX_PROYECTILES = 40;
+	Proyectil* _vProyectiles[40]; /// no funciona con max_proyectiles preguntar xq?
 	sf::Clock _tiempoJugador;
 	sf::Clock _relojSpawn;
 	sf::Clock _relojDificultad; /// reloj que cada cierto tiempo le sube la velocidad a los misiles
