@@ -54,7 +54,7 @@ int main() {
                 window.close();
             }
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::X && estado!=1){
-                musica.setVolume(15);
+                musica.setVolume(10);
                 musica.play();
                 if(estado==0){
                     juego = new Juego();
